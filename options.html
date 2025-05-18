@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi Engine Search Options</title>
+    <link rel="stylesheet" href="css/options.css">
+</head>
+<body>
+
+    <section id="general-settings">
+        <h2>General Settings</h2>
+        <div id="general-settings">
+          <label>
+              <input type="checkbox" id="collapse-all-default"> Collapse categories by default in popup
+          </label>
+          <br>
+          <label>
+              <input type="checkbox" id="disable-context-menu"> Disable context menu integration
+          </label>
+          <br>
+          <label for="theme-select" style="margin-top: 10px; display: inline-block;">Theme:</label>
+          <select id="theme-select">
+              <option value="system">System Default</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+          </select>
+      </div>
+    </section>
+
+    <section id="engine-management">
+        <h2>Manage Search Engines</h2>
+        <div class="actions">
+            <!-- Action buttons Export/Import/Reset -->
+            <div class="action-buttons-row">
+                <button id="export-btn">Export Engines</button>
+                <label class="import-label">
+                    <button id="import-btn">Import Engines</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </label>
+                <button id="reset-defaults-btn" title="Reset to initial default engines (Careful!)">Reset Defaults</button>
+            </div>
+            <button id="add-category-btn">Add Category</button>
+        </div>
+
+        <div id="categories-list">
+            <!-- Categories and engines will be rendered here by JS -->
+            <!-- Example Structure (for one category):
+            <div class="category-item draggable" draggable="true" data-category-id="uuid-cat-1">
+                <div class="category-item-header">
+                    <span class="drag-handle">☰</span>
+                    <strong class="category-item-name">Category Name</strong>
+                    <div class="category-item-actions">
+                        <button class="edit-category-btn">Edit</button>
+                        <button class="delete-category-btn">Delete</button>
+                        <button class="add-engine-btn">Add Engine</button>
+                    </div>
+                </div>
+                <div class="engine-list-container">
+                    </div>
+                </div>
+            </div>
+             -->
+        </div>
+    </section>
+
+    <!-- Modal for Editing/Adding Category -->
+    <div id="category-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="category-modal-title">Add/Edit Category</h3>
+            <input type="hidden" id="edit-category-id">
+            <label>Category Name: <input type="text" id="category-name-input" required></label>
+            <button id="save-category-btn">Save Category</button>
+        </div>
+    </div>
+
+    <!-- Modal for Editing/Adding Engine -->
+    <div id="engine-modal" class="modal" style="display: none;">
+         <div class="modal-content">
+             <span class="close-btn">&times;</span>
+             <h3 id="engine-modal-title">Add/Edit Engine</h3>
+             <input type="hidden" id="edit-engine-id">
+             <input type="hidden" id="edit-engine-category-id">
+             <label>Engine Name: <input type="text" id="engine-name-input" required></label>
+             <label>Search URL: <input type="text" id="engine-url-input" placeholder="e.g., https://example.com/?q=%s" required></label>
+             <p class="url-hint">Use <code>%s</code> as the placeholder for the search term.</p>
+             <label>Character Code:
+                 <select id="engine-charcode-select">
+                     <option value="">UTF-8 (Default)</option>
+                     <option value="Shift_JIS">Shift_JIS</option>
+                     <option value="EUC-JP">EUC-JP</option>
+                     <!-- Add more if needed -->
+                 </select>
+             </label>
+             <fieldset class="space-options">
+                 <legend>Space Handling:</legend>
+                 <label><input type="radio" name="space-handling" value="default" checked> Default (%20)</label>
+                 <label><input type="radio" name="space-handling" value="plus"> To Plus (+)</label>
+             </fieldset>
+             <button id="save-engine-btn">Save Engine</button>
+         </div>
+     </div>
+
+    <script src="js/lib/encoding.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/initialEngines.js"></script>
+    <script src="js/options.js"></script>
+</body>
+</html>

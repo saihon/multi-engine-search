@@ -1,0 +1,321 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    max-width: 80%;
+    min-width: 800px;
+    margin: 20px auto 100px;
+    text-align: left;
+}
+
+h2 {
+    border-bottom: 1px solid #ccc;    padding-bottom: 5px;
+    margin-bottom: 15px;    text-align: center;
+}
+
+section {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#general-settings {
+    margin-bottom: 25px;
+    text-align: center;
+}
+#general-settings label {
+    display: inline-flex;    align-items: center;
+    cursor: pointer;
+}
+#general-settings input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+/* --- Button Layout --- */
+.actions {
+    margin-bottom: 20px;
+}
+
+.action-buttons-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.import-label {
+    display: inline-block;
+    margin: 0;
+}
+
+#add-category-btn {
+    margin-top: 5px;
+}
+/* --- Button Layout End --- */
+
+
+button {
+    padding: 8px 14px; /* Slightly more padding for primary buttons */
+    cursor: pointer;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    color: #337ab7; /* Example: Use a link-like color for primary actions */
+    border-radius: 3px;
+    transition: color 0.2s, background-color 0.2s;
+    font-weight: bold;
+}
+button:hover {
+    color: #23527c;
+    background-color: rgba(0,0,0,0.05);
+}
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+/* List Area */
+#categories-list {
+    border: 1px solid #ddd;
+    padding: 10px;    min-height: 100px;
+
+    margin-top: 20px;
+}
+
+/* Category Item */
+.category-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+
+    border-radius: 4px;
+    overflow: hidden;
+}
+.category-item-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+}
+.category-item-name {
+    flex-grow: 1;
+    margin: 0 10px;
+    font-weight: bold;
+}
+.category-item-actions {
+    white-space: nowrap;
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+/* Engine List Container */
+.engine-list-container {
+    padding: 5px 15px 15px 35px;
+    background-color: #fff;
+}
+
+/* Engine Item */
+.engine-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px dotted #eee;
+}
+.engine-item:last-child {
+    border-bottom: none;
+}
+.engine-item-name {
+    flex-grow: 1;
+    margin: 0 8px;
+}
+.engine-item-url {
+    font-size: 0.9em;
+    color: #555;
+    margin-right: 10px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.engine-item-details {
+    font-size: 0.8em;
+    color: #777;
+    margin: 0 5px;
+    white-space: nowrap;
+}
+.engine-item-actions {
+    white-space: nowrap;
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+/* Common style for small action buttons within items */
+.item-action-button {
+    padding: 3px 6px;
+    font-size: 0.9em;
+}
+
+/* Drag and Drop Styles */
+.draggable { cursor: move; }
+.drag-handle {
+    cursor: grab;
+    margin-right: 8px;
+    color: #aaa;
+    user-select: none;
+    padding: 0 4px;
+}
+.dragging { opacity: 0.4; border-style: dashed; }
+.drag-over { border: 2px dashed green !important; background-color: #e8f5e9 !important; }
+
+/* Modal Styles */
+.modal { position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; }
+.modal-content { background-color: #fefefe; margin: auto; padding: 25px; border: 1px solid #888; width: 90%; max-width: 500px; position: relative; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 15px; cursor: pointer; line-height: 1; }
+.close-btn:hover, .close-btn:focus { color: black; text-decoration: none; }
+.modal h3 { text-align: center; margin-top: 0; margin-bottom: 20px; }
+.modal label { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px; }
+.modal label span { margin-bottom: 4px; font-weight: bold; font-size: 0.9em; }
+.modal input[type="text"], .modal input[type="url"], .modal select { width: 100%; padding: 8px; margin-left: 0; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box; }
+.modal fieldset { margin-top: 15px; border: 1px solid #ccc; padding: 10px 15px; border-radius: 3px; }
+.modal legend { font-weight: bold; padding: 0 5px; }
+.modal .space-options { text-align: left; }
+.modal .space-options label { display: inline-flex; flex-direction: row; align-items: center; margin-right: 15px; margin-bottom: 0; font-weight: normal; }
+.modal .space-options input[type="radio"] { margin-right: 5px; }
+.modal button#save-category-btn, .modal button#save-engine-btn {
+     display: block; margin: 20px auto 0 auto; float: none; padding: 8px 16px; font-size: 1em; }
+.url-hint { font-size: 0.85em; color: #666; margin: 5px 0 15px 0; }
+
+/* Dark Theme Styles */
+body.theme-dark {
+    background-color: #111111; /* New base: very dark grey / near black */
+    color: #E0E0E0;    /* Primary text color */
+}
+
+body.theme-dark h2 {
+    border-bottom-color: #333333;
+    color: #F0F0F0;
+}
+
+body.theme-dark section {
+    border-bottom-color: #282828;
+}
+
+body.theme-dark #general-settings label {
+    color: #CCCCCC;
+}
+
+body.theme-dark input[type="text"],
+body.theme-dark input[type="url"],
+body.theme-dark select {
+    background-color: #1F1F1F;
+    color: #E0E0E0;
+    border: 1px solid #444444;
+}
+
+/* Styles for regular buttons in dark theme */
+body.theme-dark button {
+    background-color: transparent;
+    color: #8ab4f8; /* Example: A light blue for dark theme primary actions */
+    border: none;
+    font-weight: bold;
+}
+body.theme-dark button:hover {
+    color: #c4d9fb;
+    background-color: rgba(255,255,255,0.08);
+}
+body.theme-dark button:disabled {
+    background-color: transparent;
+    color: #777777;
+}
+
+
+body.theme-dark #categories-list {
+    border-color: #333333;
+}
+
+body.theme-dark .category-item {
+    background-color: #1C1C1C;
+    border-color: #333333;
+}
+
+body.theme-dark .category-item-header {
+    background-color: #252525;
+    border-bottom-color: #333333;
+}
+
+body.theme-dark .category-item-name {
+    color: #F0F0F0;
+}
+
+body.theme-dark .drag-handle {
+    color: #AAAAAA;
+}
+
+body.theme-dark .engine-list-container {
+    background-color: #1A1A1A;
+}
+
+body.theme-dark .engine-item {
+    border-bottom-color: #2A2A2A;
+}
+
+body.theme-dark .engine-item-name,
+body.theme-dark .engine-item-url {
+    color: #CCCCCC;
+}
+
+body.theme-dark .engine-item-details {
+    color: #888888;
+}
+
+body.theme-dark .modal-content {
+    background-color: #1C1C1C;
+    border-color: #333333;
+    color: #E0E0E0;
+}
+
+body.theme-dark .modal h3 {
+    color: #F0F0F0;
+}
+
+body.theme-dark .modal label span {
+    color: #CCCCCC;
+}
+
+body.theme-dark .modal input[type="text"],
+body.theme-dark .modal input[type="url"],
+body.theme-dark .modal select {
+    background-color: #1F1F1F;
+    border-color: #444444;
+    color: #E0E0E0;
+}
+
+body.theme-dark .modal fieldset {
+    border-color: #333333;
+}
+body.theme-dark .modal legend {
+    color: #CCCCCC;
+}
+
+body.theme-dark .close-btn {
+    color: #AAAAAA;
+}
+body.theme-dark .close-btn:hover,
+body.theme-dark .close-btn:focus {
+    color: #F0F0F0;
+}
+
+body.theme-dark .drag-over {
+    background-color: #252525 !important;
+    border-color: #555555 !important;
+}
+
+body.theme-dark .dragging {
+    background-color: #1C1C1C;
+    opacity: 0.7;
+}

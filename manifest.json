@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "Multi Engine Search",
+  "version": "1.0",
+  "description": "Search using selected search engines from a browser action popup, with customization.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "19": "icons/icon-19.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus",
+    "tabs",
+    "downloads"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "19": "icons/icon-19.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "background": {
+    "scripts": [
+      "js/lib/encoding.min.js",
+      "js/utils.js",
+      "js/initialEngines.js",
+      "js/background.js"
+    ]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+9"
+      },
+      "description": "Open Multi Engine Search Popup"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{4995fbb1-90ba-44d7-a125-6e4dd4ab840c}",
+      "strict_min_version": "115.0"
+    }
+  }
+}
