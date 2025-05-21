@@ -32,9 +32,9 @@ Multi Engine Search is a Firefox browser extension that allows you to quickly se
 
 ## Installation
 
-### From Firefox Add-ons (AMO) - (Not available yet)
+### From Firefox Add-ons (AMO)
 
-*(Once published, add the link here)*
+[Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/multi-engine-searcher/)
 
 ### Manual Installation (for Development/Testing)
 
